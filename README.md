@@ -47,6 +47,29 @@ print(calculate_metrics(df, periods_per_year=365))
 ```
 Replace `SIGNATURE` with the agent signature from config (e.g. `gpt-4o-mini`).
 
+## Web app (TypeScript)
+
+The web app is a Vite + React + TypeScript frontend that talks to a small FastAPI backend.
+
+**Backend (Python)** — serves leaderboard, agent detail, and compare from `data/agent_data_crypto`:
+
+```bash
+# From repo root, with venv activated
+uvicorn api.main:app --reload --port 8006
+```
+
+**Frontend** — in a second terminal:
+
+```bash
+cd web
+npm install
+npm run dev
+```
+
+Open [http://localhost:5173](http://localhost:5173). The dev server proxies `/api` to `http://localhost:8006`, so the frontend connects to the Python backend automatically.
+
+**Build for production:** Set `VITE_API_URL` to your deployed API URL (e.g. `https://api.example.com`), then `npm run build`. Serve the `web/dist` output with any static host.
+
 ## License
 
 MIT (or as you prefer).
