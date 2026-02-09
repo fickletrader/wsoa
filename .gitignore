@@ -48,3 +48,5 @@ out/
 # Misc
 *.backup
 *.log
+
+PLAN.md

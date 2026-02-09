@@ -1,0 +1,26 @@
+{
+  "agent_type": "CryptoAgent",
+  "market": "crypto",
+  "date_range": {
+    "init_date": "2025-11-01",
+    "end_date": "2025-11-15"
+  },
+  "models": [
+    {
+      "name": "gpt-4o-mini",
+      "basemodel": "gpt-4o-mini",
+      "signature": "gpt-4o-mini",
+      "enabled": true
+    }
+  ],
+  "agent_config": {
+    "max_steps": 30,
+    "max_retries": 3,
+    "base_delay": 1,
+    "initial_cash": 50000,
+    "verbose": false
+  },
+  "log_config": {
+    "log_path": "./data/agent_data_crypto"
+  }
+}
