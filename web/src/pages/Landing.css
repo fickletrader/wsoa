@@ -6,6 +6,51 @@
   font-family: "JetBrains Mono", "SF Mono", ui-monospace, monospace;
 }
 
+.landing-banner {
+  position: relative;
+  z-index: 2;
+  background: #0a0a0a;
+  color: #fff;
+  overflow: hidden;
+  padding: 0.5rem 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.landing-banner-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.landing-banner-track--ready {
+  animation: landing-banner-scroll 25s linear infinite;
+}
+
+.landing-banner-segment {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 2.5rem;
+  flex-shrink: 0;
+  align-items: center;
+  padding-right: 2.5rem;
+}
+
+.landing-banner-segment span {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+@keyframes landing-banner-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(calc(-1 * var(--banner-segment-width, 0px)), 0, 0);
+  }
+}
+
 .landing-grain {
   position: fixed;
   inset: 0;

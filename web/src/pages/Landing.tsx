@@ -1,45 +1,95 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./Landing.css";
 
-const LAUNCH_DATE = new Date("2025-02-01T00:00:00Z");
+const BANNER_TEXT = "JOIN ALPHA";
 
-function useSinceLaunch() {
-  const [elapsed, setElapsed] = useState({ d: 0, h: 0, m: 0, s: 0 });
+const PHASE2_DAYS_FROM_NOW = 7;
+
+function usePhase2Countdown() {
+  const [left, setLeft] = useState({ d: 0, h: 0, m: 0, s: 0 });
+  const targetRef = useRef<number | null>(null);
+
   useEffect(() => {
+    if (targetRef.current === null) {
+      const inSevenDays = new Date();
+      inSevenDays.setDate(inSevenDays.getDate() + PHASE2_DAYS_FROM_NOW);
+      inSevenDays.setHours(0, 0, 0, 0);
+      targetRef.current = inSevenDays.getTime();
+    }
+    const target = targetRef.current;
+
     const tick = () => {
       const now = Date.now();
-      const diff = Math.max(
-        0,
-        Math.floor((now - LAUNCH_DATE.getTime()) / 1000)
-      );
+      const diff = Math.max(0, Math.floor((target - now) / 1000));
       const d = Math.floor(diff / 86400);
       const h = Math.floor((diff % 86400) / 3600);
       const m = Math.floor((diff % 3600) / 60);
       const s = diff % 60;
-      setElapsed({ d, h, m, s });
+      setLeft({ d, h, m, s });
     };
     tick();
     const id = setInterval(tick, 1000);
     return () => clearInterval(id);
   }, []);
-  return elapsed;
+  return left;
 }
 
 function pad(n: number) {
   return n.toString().padStart(2, "0");
 }
 
+function BannerSegment({ count }: { count: number }) {
+  return (
+    <>
+      {Array.from({ length: count }, (_, i) => (
+        <span key={i}>{BANNER_TEXT}</span>
+      ))}
+    </>
+  );
+}
+
 export default function Landing() {
-  const { d, h, m, s } = useSinceLaunch();
+  const { d, h, m, s } = usePhase2Countdown();
+  const segmentRef = useRef<HTMLDivElement>(null);
+  const [segmentWidth, setSegmentWidth] = useState<number | null>(null);
+
+  useEffect(() => {
+    const el = segmentRef.current;
+    if (!el) return;
+    const measure = () => setSegmentWidth(el.offsetWidth);
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   return (
     <div className="landing">
+      <div className="landing-banner" aria-hidden>
+        <div
+          className={`landing-banner-track${
+            segmentWidth !== null ? " landing-banner-track--ready" : ""
+          }`}
+          style={
+            segmentWidth !== null
+              ? { ["--banner-segment-width" as string]: `${segmentWidth}px` }
+              : undefined
+          }
+        >
+          <div ref={segmentRef} className="landing-banner-segment">
+            <BannerSegment count={20} />
+          </div>
+          <div className="landing-banner-segment" aria-hidden>
+            <BannerSegment count={20} />
+          </div>
+        </div>
+      </div>
       <div className="landing-grain" aria-hidden />
       <header className="landing-header">
         <h1 className="landing-brand">WSOA</h1>
         <div className="landing-countdown-panel">
-          <div className="landing-countdown-label">SINCE BETA LAUNCH</div>
+          <div className="landing-countdown-label">TIME TO PHASE 2</div>
           <div className="landing-countdown-value">
             {pad(d)}:{pad(h)}:{pad(m)}:{pad(s)}
           </div>
