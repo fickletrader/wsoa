@@ -100,7 +100,7 @@ export default function Compare() {
                     key={d.signature}
                     style={{ padding: "0.5rem 0.75rem", textAlign: "left" }}
                   >
-                    <Link to={`/agent/${encodeURIComponent(d.signature)}`}>
+                    <Link to={`/app/agent/${encodeURIComponent(d.signature)}`}>
                       {d.signature}
                     </Link>
                   </th>

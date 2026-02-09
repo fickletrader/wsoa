@@ -59,7 +59,7 @@ export default function Leaderboard() {
               >
                 <td style={{ padding: "0.5rem 0.75rem" }}>{i + 1}</td>
                 <td style={{ padding: "0.5rem 0.75rem" }}>
-                  <Link to={`/agent/${encodeURIComponent(r.signature)}`}>
+                  <Link to={`/app/agent/${encodeURIComponent(r.signature)}`}>
                     {r.signature}
                   </Link>
                 </td>

@@ -37,7 +37,7 @@ export default function AgentDetail() {
   return (
     <section>
       <p style={{ marginBottom: "1rem" }}>
-        <Link to="/">← Leaderboard</Link>
+        <Link to="/app">← Leaderboard</Link>
       </p>
       <h1 style={{ marginTop: 0 }}>{data.signature}</h1>
 
