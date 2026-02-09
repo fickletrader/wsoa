@@ -1,0 +1,50 @@
+# Environment
+.env
+.env.local
+.env.*.local
+venv/
+.venv/
+env/
+ENV/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.mypy_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Data (keep structure, ignore large/generated)
+data/crypto/coin/*.json
+data/crypto/*.jsonl
+data/agent_data_crypto/
+logs/
+*.log
+runtime_env.json
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*.swo
+*~
+
+# Node / frontend (when added)
+node_modules/
+.next/
+out/
+.webpack/
+
+# Misc
+*.backup
+*.log

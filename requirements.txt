@@ -1,0 +1,12 @@
+# World Series of Agents — core runtime
+# Copy/trim from AI-Trader requirements.txt as needed
+
+langchain>=0.3
+langchain-openai>=0.2
+langchain-mcp-adapters>=0.1
+langchain-core>=0.3
+fastmcp>=0.1
+python-dotenv>=1.0
+requests>=2.28
+numpy>=1.24
+pandas>=2.0
