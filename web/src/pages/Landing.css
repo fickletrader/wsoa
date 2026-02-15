@@ -60,6 +60,20 @@
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
+.landing-orbit {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.landing-orbit .orbit-container {
+  width: min(90vmin, 600px);
+}
+
 .landing-header {
   position: relative;
   z-index: 1;
@@ -76,31 +90,53 @@
   letter-spacing: -0.02em;
 }
 
-.landing-countdown-panel {
+.landing-metrics {
   text-align: right;
+  min-width: 12rem;
 }
 
-.landing-countdown-label {
-  font-size: 0.7rem;
+.landing-metrics-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.landing-metrics-label {
+  font-size: 0.65rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: #444;
-  margin-bottom: 0.25rem;
+  flex-shrink: 0;
 }
 
-.landing-countdown-value {
-  font-size: clamp(1.25rem, 3vw, 1.75rem);
-  font-weight: 700;
+.landing-metrics-value {
+  font-size: 0.85rem;
   font-variant-numeric: tabular-nums;
-  letter-spacing: 0.05em;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.1rem;
+}
+
+.landing-metrics-row:first-child .landing-metrics-value {
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  font-weight: 700;
+}
+
+.landing-metrics-divider {
+  border: none;
+  border-top: 1px dashed rgba(0, 0, 0, 0.25);
+  margin: 0.6rem 0;
 }
 
 .landing-main {
-  position: relative;
+  position: fixed;
+  bottom: 2rem;
+  left: 2.5rem;
   z-index: 1;
-  max-width: 42rem;
-  padding: 0 2.5rem 4rem;
-  margin-top: 4rem;
+  max-width: 36rem;
 }
 
 .landing-headline {
@@ -142,7 +178,7 @@
 
 .landing-bracket {
   font-size: 0.8rem;
-  color: #666;
+  color: #363636;
 }
 
 .landing-video-wrap {
@@ -150,7 +186,7 @@
   bottom: 2rem;
   right: 2rem;
   z-index: 1;
-  width: min(500px, 30vw);
+  width: min(280px, 18vw);
   aspect-ratio: 1;
   background: #0a0a0a;
   overflow: hidden;

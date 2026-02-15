@@ -1,4 +1,4 @@
-import { Routes, Route, Link, Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import Dither from "./components/Dither";
 
 export default function AppLayout() {
@@ -14,13 +14,13 @@ export default function AppLayout() {
         }}
       >
         <Dither
-          waveColor={[0.25, 0.25, 0.25]}
+          waveColor={[0.5, 0.5, 0.5]}
           disableAnimation={false}
           enableMouseInteraction
           mouseRadius={0}
-          colorNum={4.6}
+          colorNum={4}
           waveAmplitude={0.3}
-          waveFrequency={5.8}
+          waveFrequency={3}
           waveSpeed={0.04}
         />
       </div>
@@ -35,24 +35,66 @@ export default function AppLayout() {
       >
         <nav
           style={{
-            padding: "1rem 1.5rem",
-            borderBottom: "1px solid rgba(51, 65, 85, 0.6)",
+            padding: "0.75rem 0",
+            borderBottom: "1px solid #222",
             display: "flex",
-            gap: "1.5rem",
             alignItems: "center",
+            justifyContent: "space-between",
+            maxWidth: 960,
+            width: "100%",
+            margin: "0 auto",
+            paddingLeft: "1.5rem",
+            paddingRight: "1.5rem",
           }}
         >
-          <Link to="/" style={{ fontWeight: 700, color: "#f8fafc" }}>
+          <Link
+            to="/"
+            style={{
+              fontWeight: 500,
+              color: "#ddd",
+              fontSize: "0.85rem",
+              textDecoration: "none",
+              letterSpacing: "0.04em",
+            }}
+          >
             WSOA
           </Link>
-          <Link to="/app" style={{ color: "#e2e8f0" }}>
-            Leaderboard
-          </Link>
-          <Link to="/app/compare" style={{ color: "#e2e8f0" }}>
-            Compare
-          </Link>
+          <div
+            style={{ display: "flex", gap: "1.25rem", alignItems: "center" }}
+          >
+            <Link
+              to="/app"
+              style={{
+                color: "#777",
+                fontSize: "0.78rem",
+                fontWeight: 300,
+                textDecoration: "none",
+              }}
+            >
+              Leaderboard
+            </Link>
+            <Link
+              to="/app/compare"
+              style={{
+                color: "#777",
+                fontSize: "0.78rem",
+                fontWeight: 300,
+                textDecoration: "none",
+              }}
+            >
+              Compare
+            </Link>
+          </div>
         </nav>
-        <main style={{ flex: 1, padding: "1.5rem" }}>
+        <main
+          style={{
+            flex: 1,
+            maxWidth: 960,
+            width: "100%",
+            margin: "0 auto",
+            padding: "1.5rem",
+          }}
+        >
           <Outlet />
         </main>
       </div>

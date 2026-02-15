@@ -1,38 +1,40 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import CursorCoordinates from "../components/CursorCoordinates";
+import OrbitImages from "../components/OrbitImages";
 import "./Landing.css";
+
+const orbitImages = [
+  "https://picsum.photos/300/300?grayscale&random=1",
+  "https://picsum.photos/300/300?grayscale&random=2",
+  "https://picsum.photos/300/300?grayscale&random=3",
+  "https://picsum.photos/300/300?grayscale&random=4",
+  "https://picsum.photos/300/300?grayscale&random=5",
+  "https://picsum.photos/300/300?grayscale&random=6",
+];
 
 const BANNER_TEXT = "JOIN ALPHA";
 
-const PHASE2_DAYS_FROM_NOW = 7;
+const BETA_LAUNCH = new Date("2025-01-15T00:00:00Z").getTime();
 
-function usePhase2Countdown() {
-  const [left, setLeft] = useState({ d: 0, h: 0, m: 0, s: 0 });
-  const targetRef = useRef<number | null>(null);
+function useUptime() {
+  const [elapsed, setElapsed] = useState({ d: 0, h: 0, m: 0, s: 0 });
 
   useEffect(() => {
-    if (targetRef.current === null) {
-      const inSevenDays = new Date();
-      inSevenDays.setDate(inSevenDays.getDate() + PHASE2_DAYS_FROM_NOW);
-      inSevenDays.setHours(0, 0, 0, 0);
-      targetRef.current = inSevenDays.getTime();
-    }
-    const target = targetRef.current;
-
     const tick = () => {
       const now = Date.now();
-      const diff = Math.max(0, Math.floor((target - now) / 1000));
+      const diff = Math.floor((now - BETA_LAUNCH) / 1000);
       const d = Math.floor(diff / 86400);
       const h = Math.floor((diff % 86400) / 3600);
       const m = Math.floor((diff % 3600) / 60);
       const s = diff % 60;
-      setLeft({ d, h, m, s });
+      setElapsed({ d, h, m, s });
     };
     tick();
     const id = setInterval(tick, 1000);
     return () => clearInterval(id);
   }, []);
-  return left;
+  return elapsed;
 }
 
 function pad(n: number) {
@@ -50,7 +52,7 @@ function BannerSegment({ count }: { count: number }) {
 }
 
 export default function Landing() {
-  const { d, h, m, s } = usePhase2Countdown();
+  const uptime = useUptime();
   const segmentRef = useRef<HTMLDivElement>(null);
   const [segmentWidth, setSegmentWidth] = useState<number | null>(null);
 
@@ -66,6 +68,7 @@ export default function Landing() {
 
   return (
     <div className="landing">
+      <CursorCoordinates />
       <div className="landing-banner" aria-hidden>
         <div
           className={`landing-banner-track${
@@ -86,12 +89,52 @@ export default function Landing() {
         </div>
       </div>
       <div className="landing-grain" aria-hidden />
+      <div className="landing-orbit">
+        <OrbitImages
+          images={orbitImages}
+          shape="ellipse"
+          radiusX={340}
+          radiusY={80}
+          rotation={-8}
+          duration={30}
+          itemSize={80}
+          responsive={true}
+          radius={160}
+          direction="normal"
+          fill
+          showPath
+          paused={false}
+        />
+      </div>
       <header className="landing-header">
         <h1 className="landing-brand">WSOA</h1>
-        <div className="landing-countdown-panel">
-          <div className="landing-countdown-label">TIME TO PHASE 2</div>
-          <div className="landing-countdown-value">
-            {pad(d)}:{pad(h)}:{pad(m)}:{pad(s)}
+        <div className="landing-metrics">
+          <div className="landing-metrics-row">
+            <span className="landing-metrics-label">EPOCH 1 COUNTDOWN</span>
+            <span className="landing-metrics-value">
+              {pad(uptime.d)}:{pad(uptime.h)}:{pad(uptime.m)}:{pad(uptime.s)}
+            </span>
+          </div>
+          <div className="landing-metrics-divider" />
+          <div className="landing-metrics-row">
+            <span className="landing-metrics-label">THROUGHPUT</span>
+            <span className="landing-metrics-value">
+              <span>12.4k req/s</span>
+              <span>Peak 18.2k</span>
+            </span>
+          </div>
+          <div className="landing-metrics-divider" />
+          <div className="landing-metrics-row">
+            <span className="landing-metrics-label">LATENCY</span>
+            <span className="landing-metrics-value">
+              <span>P99 42ms</span>
+              <span>Avg 12ms</span>
+            </span>
+          </div>
+          <div className="landing-metrics-divider" />
+          <div className="landing-metrics-row">
+            <span className="landing-metrics-label">STATUS</span>
+            <span className="landing-metrics-value">Operational</span>
           </div>
         </div>
       </header>

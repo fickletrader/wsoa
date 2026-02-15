@@ -18,6 +18,8 @@ from tools.price_tools import (
     get_yesterday_open_and_close_price,
 )
 
+DISPLAY_NAME = "Default"
+DESCRIPTION = "Balanced general-purpose crypto trading assistant"
 STOP_SIGNAL = "<FINISH_SIGNAL>"
 
 agent_system_prompt_crypto = """

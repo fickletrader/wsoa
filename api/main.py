@@ -13,12 +13,13 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 from api.build_leaderboard import build_leaderboard, get_agent_detail, list_signatures
+from strategies.registry import list_strategies
 
 app = FastAPI(title="WSOA API", version="0.1.0")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173", "http://localhost:5174", "http://127.0.0.1:5174"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -51,6 +52,12 @@ def agent_detail(signature: str):
     if "error" in detail:
         raise HTTPException(status_code=500, detail=detail["error"])
     return detail
+
+
+@app.get("/api/strategies")
+def strategies():
+    """List all available strategies with metadata."""
+    return list_strategies()
 
 
 @app.get("/api/compare")

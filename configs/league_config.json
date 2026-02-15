@@ -2,14 +2,50 @@
   "agent_type": "CryptoAgent",
   "market": "crypto",
   "date_range": {
-    "init_date": "2025-11-01",
-    "end_date": "2025-11-15"
+    "init_date": "2026-01-28",
+    "end_date": "2026-02-07"
   },
   "models": [
     {
-      "name": "gpt-4o-mini",
+      "name": "Warren",
       "basemodel": "gpt-4o-mini",
-      "signature": "gpt-4o-mini",
+      "strategy_id": "warren",
+      "signature": "warren--gpt-4o-mini",
+      "enabled": true
+    },
+    {
+      "name": "DegenSpartan",
+      "basemodel": "gpt-4o-mini",
+      "strategy_id": "degen_spartan",
+      "signature": "degenspartan--gpt-4o-mini",
+      "enabled": true
+    },
+    {
+      "name": "SatoshiOracle",
+      "basemodel": "gpt-4o-mini",
+      "strategy_id": "satoshi_oracle",
+      "signature": "satoshioracle--gpt-4o-mini",
+      "enabled": true
+    },
+    {
+      "name": "Warren",
+      "basemodel": "gpt-4o",
+      "strategy_id": "warren",
+      "signature": "warren--gpt-4o",
+      "enabled": true
+    },
+    {
+      "name": "DegenSpartan",
+      "basemodel": "gpt-4o",
+      "strategy_id": "degen_spartan",
+      "signature": "degenspartan--gpt-4o",
+      "enabled": true
+    },
+    {
+      "name": "SatoshiOracle",
+      "basemodel": "gpt-4o",
+      "strategy_id": "satoshi_oracle",
+      "signature": "satoshioracle--gpt-4o",
       "enabled": true
     }
   ],

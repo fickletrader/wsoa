@@ -1,0 +1,62 @@
+/* Hide default cursor only when coordinates cursor is active (landing page) */
+html.cursor-coordinates-active,
+html.cursor-coordinates-active * {
+  cursor: none !important;
+}
+
+.cursor-coordinates__line {
+  position: fixed;
+  pointer-events: none;
+  z-index: 1;
+  background: #cacaca;
+}
+
+.cursor-coordinates__line--horizontal {
+  left: 0;
+  height: .5px;
+  transform: translateY(-50%);
+}
+
+.cursor-coordinates__line--vertical {
+  top: 0;
+  width: .5px;
+  transform: translateX(-50%);
+}
+
+.cursor-coordinates {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+}
+
+.cursor-coordinates__crosshair {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 2px;
+  height: 16px;
+  background: black;
+  transform: translate(-50%, -50%);
+}
+
+.cursor-coordinates__crosshair::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 16px;
+  height: 2px;
+  background: black;
+  transform: translate(-50%, -50%);
+}
+
+.cursor-coordinates__label {
+  position: absolute;
+  left: calc(50% + 14px);
+  top: calc(50% + 6px);
+  font-family: "JetBrains Mono", "SF Mono", ui-monospace, monospace;
+  font-size: 12px;
+  color: black;
+  white-space: nowrap;
+}

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-WSOA main entry: run crypto agent(s) from config.
+WSOA main entry: run crypto agent league from config.
 Usage: python main.py [config_path]
 Default config: configs/league_config.json
 """
@@ -15,6 +15,8 @@ from dotenv import load_dotenv
 project_root = Path(__file__).resolve().parent
 load_dotenv(project_root / ".env")
 sys.path.insert(0, str(project_root))
+
+from strategies.registry import get_strategy
 
 
 def load_config(path=None):
@@ -58,15 +60,32 @@ async def main(config_path=None):
         print("No enabled models in config.")
         sys.exit(1)
 
-    for model_cfg in models:
+    print(f"=== WSOA League: {len(models)} agents, {init_date} → {end_date} ===\n")
+
+    for i, model_cfg in enumerate(models, 1):
         name = model_cfg.get("name", "agent")
         basemodel = model_cfg.get("basemodel")
         signature = model_cfg.get("signature", name)
+        strategy_id = model_cfg.get("strategy_id", "default")
+
         if not basemodel:
             print(f"Skip {name}: missing basemodel")
             continue
+
+        # Load strategy module
+        strategy_mod = get_strategy(strategy_id)
+        prompt_fn = strategy_mod.get_agent_system_prompt_crypto
+
         openai_base_url = model_cfg.get("openai_base_url") or os.getenv("OPENAI_API_BASE")
         openai_api_key = model_cfg.get("openai_api_key") or os.getenv("OPENAI_API_KEY")
+
+        agent_meta = {
+            "display_name": getattr(strategy_mod, "DISPLAY_NAME", name),
+            "strategy_id": strategy_id,
+            "strategy_description": getattr(strategy_mod, "DESCRIPTION", ""),
+        }
+
+        print(f"[{i}/{len(models)}] {agent_meta['display_name']} ({basemodel}) — strategy: {strategy_id}")
 
         agent = AgentClass(
             signature=signature,
@@ -79,14 +98,15 @@ async def main(config_path=None):
             init_date=init_date,
             openai_base_url=openai_base_url,
             openai_api_key=openai_api_key,
+            prompt_fn=prompt_fn,
+            agent_meta=agent_meta,
         )
         await agent.initialize()
         await agent.run_date_range(init_date, end_date)
         summary = agent.get_position_summary()
-        print("Summary:", summary.get("latest_date"), "Records:", summary.get("total_records"))
-        print("Cash:", summary.get("positions", {}).get("CASH"))
+        print(f"  Done — latest: {summary.get('latest_date')}, records: {summary.get('total_records')}, cash: {summary.get('positions', {}).get('CASH')}\n")
 
-    print("Done.")
+    print("=== League complete ===")
 
 
 if __name__ == "__main__":

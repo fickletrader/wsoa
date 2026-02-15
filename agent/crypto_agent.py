@@ -82,6 +82,8 @@ class CryptoAgent:
         initial_cash: float = 50000.0,
         init_date: str = "2025-11-01",
         market: str = "crypto",
+        prompt_fn=None,
+        agent_meta: Optional[Dict[str, str]] = None,
     ):
         self.signature = signature
         self.basemodel = basemodel
@@ -96,6 +98,8 @@ class CryptoAgent:
         self.base_log_path = log_path or "./data/agent_data_crypto"
         self.openai_base_url = openai_base_url or os.getenv("OPENAI_API_BASE")
         self.openai_api_key = openai_api_key or os.getenv("OPENAI_API_KEY")
+        self.prompt_fn = prompt_fn or get_agent_system_prompt_crypto
+        self.agent_meta = agent_meta or {}
         self.client = None
         self.tools = None
         self.model = None
@@ -157,7 +161,7 @@ class CryptoAgent:
         self.agent = create_agent(
             self.model,
             tools=self.tools,
-            system_prompt=get_agent_system_prompt_crypto(today_date, self.signature, self.market, self.crypto_symbols),
+            system_prompt=self.prompt_fn(today_date, self.signature, self.market, self.crypto_symbols),
         )
         user_query = [{"role": "user", "content": f"Please analyze and update today's ({today_date}) positions."}]
         message = user_query.copy()
@@ -188,13 +192,29 @@ class CryptoAgent:
 
     def register_agent(self) -> None:
         if os.path.exists(self.position_file):
+            self._write_meta()
             return
         os.makedirs(os.path.dirname(self.position_file), exist_ok=True)
         init_position = {s: 0.0 for s in self.crypto_symbols}
         init_position["CASH"] = self.initial_cash
         with open(self.position_file, "w") as f:
             f.write(json.dumps({"date": self.init_date, "id": 0, "positions": init_position}) + "\n")
+        self._write_meta()
         print(f"Registered agent {self.signature}")
+
+    def _write_meta(self) -> None:
+        """Write agent_meta.json with display name, model, strategy info."""
+        meta_file = os.path.join(self.data_path, "agent_meta.json")
+        meta = {
+            "signature": self.signature,
+            "display_name": self.agent_meta.get("display_name", self.signature),
+            "basemodel": self.basemodel,
+            "strategy_id": self.agent_meta.get("strategy_id", "default"),
+            "strategy_description": self.agent_meta.get("strategy_description", ""),
+        }
+        os.makedirs(self.data_path, exist_ok=True)
+        with open(meta_file, "w") as f:
+            json.dump(meta, f, indent=2)
 
     def get_trading_dates(self, init_date: str, end_date: str) -> List[str]:
         from tools.price_tools import is_trading_day
