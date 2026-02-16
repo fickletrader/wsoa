@@ -28,6 +28,27 @@
       "enabled": true
     },
     {
+      "name": "MomentumMike",
+      "basemodel": "gpt-4o-mini",
+      "strategy_id": "momentum_mike",
+      "signature": "momentummike--gpt-4o-mini",
+      "enabled": true
+    },
+    {
+      "name": "MeanRevert",
+      "basemodel": "gpt-4o-mini",
+      "strategy_id": "mean_reversion",
+      "signature": "meanrevert--gpt-4o-mini",
+      "enabled": true
+    },
+    {
+      "name": "NewsHound",
+      "basemodel": "gpt-4o-mini",
+      "strategy_id": "news_hound",
+      "signature": "newshound--gpt-4o-mini",
+      "enabled": true
+    },
+    {
       "name": "Warren",
       "basemodel": "gpt-4o",
       "strategy_id": "warren",
@@ -47,6 +68,84 @@
       "strategy_id": "satoshi_oracle",
       "signature": "satoshioracle--gpt-4o",
       "enabled": true
+    },
+    {
+      "name": "MomentumMike",
+      "basemodel": "gpt-4o",
+      "strategy_id": "momentum_mike",
+      "signature": "momentummike--gpt-4o",
+      "enabled": true
+    },
+    {
+      "name": "MeanRevert",
+      "basemodel": "gpt-4o",
+      "strategy_id": "mean_reversion",
+      "signature": "meanrevert--gpt-4o",
+      "enabled": true
+    },
+    {
+      "name": "NewsHound",
+      "basemodel": "gpt-4o",
+      "strategy_id": "news_hound",
+      "signature": "newshound--gpt-4o",
+      "enabled": true
+    },
+    {
+      "_comment": "DeepSeek — set DEEPSEEK_API_KEY in .env or override openai_api_key below",
+      "name": "Warren",
+      "basemodel": "deepseek-chat",
+      "strategy_id": "warren",
+      "signature": "warren--deepseek-chat",
+      "openai_base_url": "https://api.deepseek.com/v1",
+      "openai_api_key": "${DEEPSEEK_API_KEY}",
+      "enabled": false
+    },
+    {
+      "name": "DegenSpartan",
+      "basemodel": "deepseek-chat",
+      "strategy_id": "degen_spartan",
+      "signature": "degenspartan--deepseek-chat",
+      "openai_base_url": "https://api.deepseek.com/v1",
+      "openai_api_key": "${DEEPSEEK_API_KEY}",
+      "enabled": false
+    },
+    {
+      "name": "SatoshiOracle",
+      "basemodel": "deepseek-chat",
+      "strategy_id": "satoshi_oracle",
+      "signature": "satoshioracle--deepseek-chat",
+      "openai_base_url": "https://api.deepseek.com/v1",
+      "openai_api_key": "${DEEPSEEK_API_KEY}",
+      "enabled": false
+    },
+    {
+      "_comment": "Claude via OpenRouter — set OPENROUTER_API_KEY in .env or override below",
+      "name": "Warren",
+      "basemodel": "anthropic/claude-3.5-sonnet",
+      "strategy_id": "warren",
+      "signature": "warren--claude-3.5-sonnet",
+      "openai_base_url": "https://openrouter.ai/api/v1",
+      "openai_api_key": "${OPENROUTER_API_KEY}",
+      "enabled": false
+    },
+    {
+      "name": "DegenSpartan",
+      "basemodel": "anthropic/claude-3.5-sonnet",
+      "strategy_id": "degen_spartan",
+      "signature": "degenspartan--claude-3.5-sonnet",
+      "openai_base_url": "https://openrouter.ai/api/v1",
+      "openai_api_key": "${OPENROUTER_API_KEY}",
+      "enabled": false
+    },
+    {
+      "_comment": "Gemini via OpenRouter",
+      "name": "SatoshiOracle",
+      "basemodel": "google/gemini-2.0-flash-001",
+      "strategy_id": "satoshi_oracle",
+      "signature": "satoshioracle--gemini-2.0-flash",
+      "openai_base_url": "https://openrouter.ai/api/v1",
+      "openai_api_key": "${OPENROUTER_API_KEY}",
+      "enabled": false
     }
   ],
   "agent_config": {

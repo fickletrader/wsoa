@@ -12,7 +12,7 @@ if str(ROOT) not in sys.path:
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
-from api.build_leaderboard import build_leaderboard, get_agent_detail, list_signatures
+from api.build_leaderboard import build_leaderboard, get_agent_detail, get_agent_logs, list_signatures
 from strategies.registry import list_strategies
 
 app = FastAPI(title="WSOA API", version="0.1.0")
@@ -52,6 +52,15 @@ def agent_detail(signature: str):
     if "error" in detail:
         raise HTTPException(status_code=500, detail=detail["error"])
     return detail
+
+
+@app.get("/api/agents/{signature}/logs")
+def agent_logs(signature: str, date: str | None = None):
+    """Reasoning traces / conversation logs for an agent."""
+    result = get_agent_logs(signature, date)
+    if result is None:
+        raise HTTPException(status_code=404, detail="No logs found for agent")
+    return result
 
 
 @app.get("/api/strategies")

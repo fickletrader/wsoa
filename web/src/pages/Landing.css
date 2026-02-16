@@ -139,6 +139,24 @@
   max-width: 36rem;
 }
 
+.landing-native {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  color: #555;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.6rem;
+  font-weight: 400;
+}
+
+.landing-monad-logo {
+  height: 1rem;
+  display: inline-block;
+  vertical-align: middle;
+  opacity: 0.6;
+}
+
 .landing-headline {
   margin: 0 0 1rem;
   font-size: clamp(1.5rem, 4vw, 2.25rem);

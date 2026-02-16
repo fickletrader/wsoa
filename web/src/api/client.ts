@@ -62,6 +62,13 @@ export interface StrategyInfo {
   description: string;
 }
 
+export interface AgentLogs {
+  signature: string;
+  dates: string[];
+  selected_date: string;
+  logs: { role: string; content: string }[];
+}
+
 /* ── API calls ────────────────────────────────────────────────────── */
 
 export const api = {
@@ -81,4 +88,11 @@ export const api = {
     ),
 
   strategies: () => fetchApi<StrategyInfo[]>("/api/strategies"),
+
+  agentLogs: (signature: string, date?: string) =>
+    fetchApi<AgentLogs>(
+      `/api/agents/${encodeURIComponent(signature)}/logs${
+        date ? `?date=${date}` : ""
+      }`
+    ),
 };

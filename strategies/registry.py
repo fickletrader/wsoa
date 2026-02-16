@@ -6,6 +6,9 @@ STRATEGY_MAP: Dict[str, str] = {
     "warren": "strategies.warren",
     "degen_spartan": "strategies.degen_spartan",
     "satoshi_oracle": "strategies.satoshi_oracle",
+    "momentum_mike": "strategies.momentum_mike",
+    "mean_reversion": "strategies.mean_reversion",
+    "news_hound": "strategies.news_hound",
     "default": "prompts.agent_prompt_crypto",
 }
 

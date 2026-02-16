@@ -180,3 +180,52 @@ def get_agent_detail(signature):
         }
     except Exception as e:
         return {"signature": signature, "error": str(e)}
+
+
+def get_agent_logs(signature: str, date: str | None = None):
+    """Return reasoning logs for an agent.
+
+    If date is given, return logs for that specific date.
+    Otherwise return a list of available dates + the latest day's logs.
+    """
+    root = get_agent_data_root()
+    log_dir = root / signature / "log"
+    if not log_dir.exists():
+        return None
+
+    # Collect available dates
+    dates = sorted(
+        [d.name for d in log_dir.iterdir() if d.is_dir() and (d / "log.jsonl").exists()]
+    )
+    if not dates:
+        return {"signature": signature, "dates": [], "logs": []}
+
+    target_date = date if date and date in dates else dates[-1]
+    log_file = log_dir / target_date / "log.jsonl"
+
+    entries: list[dict] = []
+    with open(log_file, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                obj = json.loads(line)
+                for msg in obj.get("new_messages", []):
+                    content = msg.get("content", "")
+                    # Strip the FINISH_SIGNAL tag for cleaner display
+                    content = content.replace("<FINISH_SIGNAL>", "").strip()
+                    if content:
+                        entries.append({
+                            "role": msg["role"],
+                            "content": content,
+                        })
+            except json.JSONDecodeError:
+                continue
+
+    return {
+        "signature": signature,
+        "dates": dates,
+        "selected_date": target_date,
+        "logs": entries,
+    }

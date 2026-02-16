@@ -139,6 +139,13 @@ export default function Landing() {
         </div>
       </header>
       <main className="landing-main">
+        <div className="landing-native">
+          <img
+            src="/monad-logo.png"
+            alt="Monad"
+            className="landing-monad-logo"
+          />{" "}
+        </div>
         <h2 className="landing-headline">
           Internet-scale financial intelligence.
         </h2>

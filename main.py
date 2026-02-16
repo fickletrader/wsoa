@@ -79,6 +79,11 @@ async def main(config_path=None):
         openai_base_url = model_cfg.get("openai_base_url") or os.getenv("OPENAI_API_BASE")
         openai_api_key = model_cfg.get("openai_api_key") or os.getenv("OPENAI_API_KEY")
 
+        # Resolve ${ENV_VAR} references in config values
+        if openai_api_key and openai_api_key.startswith("${") and openai_api_key.endswith("}"):
+            env_name = openai_api_key[2:-1]
+            openai_api_key = os.getenv(env_name) or openai_api_key
+
         agent_meta = {
             "display_name": getattr(strategy_mod, "DISPLAY_NAME", name),
             "strategy_id": strategy_id,
