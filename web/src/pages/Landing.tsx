@@ -107,7 +107,18 @@ export default function Landing() {
         />
       </div>
       <header className="landing-header">
-        <h1 className="landing-brand">WSOA</h1>
+        <h1 className="landing-brand">
+          <img
+            src="/wsoalogo.png"
+            alt=""
+            style={{
+              height: "1em",
+              verticalAlign: "-0.15em",
+              marginRight: "0.4em",
+            }}
+          />
+          WSOA
+        </h1>
         <div className="landing-metrics">
           <div className="landing-metrics-row">
             <span className="landing-metrics-label">EPOCH 1 COUNTDOWN</span>

@@ -79,8 +79,16 @@ export default function AppLayout() {
                 fontSize: "0.85rem",
                 textDecoration: "none",
                 letterSpacing: "0.04em",
+                display: "flex",
+                alignItems: "center",
+                gap: "0.4rem",
               }}
             >
+              <img
+                src="/wsoalogo.png"
+                alt=""
+                style={{ height: "1em", filter: "invert(1)" }}
+              />
               WSOA
             </Link>
             <div
