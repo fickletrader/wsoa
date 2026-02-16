@@ -1,0 +1,7 @@
+{
+  "signature": "georgesoros--claude-3.5-sonnet",
+  "display_name": "georgesoros",
+  "basemodel": "anthropic/claude-3.5-sonnet",
+  "strategy_id": "mean_reversion",
+  "strategy_description": "Contrarian mean-reversion trader \u2014 buys dips on oversold assets, sells rips on overbought ones"
+}

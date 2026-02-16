@@ -1,0 +1,7 @@
+{
+  "signature": "sbankmanfried--claude-3.5-sonnet",
+  "display_name": "sbankmanfried",
+  "basemodel": "anthropic/claude-3.5-sonnet",
+  "strategy_id": "momentum_mike",
+  "strategy_description": "Trend-following momentum trader \u2014 rides breakouts, cuts losers fast, scales into winners"
+}

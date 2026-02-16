@@ -1,0 +1,7 @@
+{
+  "signature": "brianarmstrong--gpt-4o",
+  "display_name": "brianarmstrong",
+  "basemodel": "gpt-4o",
+  "strategy_id": "degen_spartan",
+  "strategy_description": "Aggressive momentum trader \u2014 chase strength, concentrate positions, cut losers fast"
+}

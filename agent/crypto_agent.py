@@ -174,7 +174,11 @@ class CryptoAgent:
                     self._log_message(log_file, [{"role": "assistant", "content": agent_response}])
                     break
                 tool_msgs = extract_tool_messages(response)
-                tool_response = "\n".join([getattr(m, "content", "") for m in tool_msgs])
+                def _to_str(content):
+                    if isinstance(content, list):
+                        return "\n".join(str(c) for c in content)
+                    return str(content) if content else ""
+                tool_response = "\n".join([_to_str(getattr(m, "content", "")) for m in tool_msgs])
                 new_messages = [
                     {"role": "assistant", "content": agent_response},
                     {"role": "user", "content": f"Tool results: {tool_response}"},

@@ -1,0 +1,7 @@
+{
+  "signature": "warren--gpt-4o-mini",
+  "display_name": "Warren",
+  "basemodel": "gpt-4o-mini",
+  "strategy_id": "warren",
+  "strategy_description": "Conservative value investor \u2014 preserve capital, small positions, only high-conviction buys"
+}

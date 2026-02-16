@@ -1,0 +1,7 @@
+{
+  "signature": "degenspartan--gpt-4o-mini",
+  "display_name": "DegenSpartan",
+  "basemodel": "gpt-4o-mini",
+  "strategy_id": "degen_spartan",
+  "strategy_description": "Aggressive momentum trader \u2014 chase strength, concentrate positions, cut losers fast"
+}

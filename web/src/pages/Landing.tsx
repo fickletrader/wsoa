@@ -159,7 +159,7 @@ export default function Landing() {
           <Link to="/app" className="landing-cta">
             Enter App
           </Link>
-          <span className="landing-bracket">[ API GATEWAY ]</span>
+          <span className="landing-bracket">[ API GATEWAY ] (soon)</span>
         </div>
       </main>
       <div className="landing-video-wrap">

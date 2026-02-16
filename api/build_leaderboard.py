@@ -3,6 +3,7 @@ Build leaderboard from data/agent_data_crypto: scan each signature dir,
 compute metrics, return ranked list. Used by FastAPI and by compare_strategies script.
 """
 import json
+import math
 import sys
 from pathlib import Path
 
@@ -16,6 +17,17 @@ from tools.calculate_metrics import (
     calculate_portfolio_values,
     calculate_metrics,
 )
+
+
+def _safe_float(v, default=None):
+    """Convert to float, returning default for NaN/inf."""
+    try:
+        f = float(v)
+        if math.isnan(f) or math.isinf(f):
+            return default
+        return f
+    except (TypeError, ValueError):
+        return default
 
 
 def get_agent_data_root():
@@ -98,12 +110,12 @@ def build_leaderboard(sort_by="CR"):
                 "basemodel": meta.get("basemodel", ""),
                 "strategy_id": meta.get("strategy_id", "default"),
                 "strategy_description": meta.get("strategy_description", ""),
-                "cr": float(metrics["CR"]),
-                "sortino": float(metrics["SR"]) if abs(metrics["SR"]) != float("inf") else None,
-                "vol": float(metrics["Vol"]),
-                "mdd": float(metrics["MDD"]),
-                "initial_value": metrics["Initial Value"],
-                "final_value": metrics["Final Value"],
+                "cr": _safe_float(metrics["CR"]),
+                "sortino": _safe_float(metrics["SR"]),
+                "vol": _safe_float(metrics["Vol"]),
+                "mdd": _safe_float(metrics["MDD"]),
+                "initial_value": _safe_float(metrics["Initial Value"], 0),
+                "final_value": _safe_float(metrics["Final Value"], 0),
                 "total_positions": metrics["Total Positions"],
                 "date_range": metrics["Date Range"],
             })
@@ -166,16 +178,19 @@ def get_agent_detail(signature):
             "strategy_description": meta.get("strategy_description", ""),
             "strategy_prompt": _get_strategy_prompt(strategy_id),
             "metrics": {
-                "cr": float(metrics["CR"]),
-                "sortino": float(metrics["SR"]) if abs(metrics["SR"]) != float("inf") else None,
-                "vol": float(metrics["Vol"]),
-                "mdd": float(metrics["MDD"]),
-                "initial_value": metrics["Initial Value"],
-                "final_value": metrics["Final Value"],
+                "cr": _safe_float(metrics["CR"], 0),
+                "sortino": _safe_float(metrics["SR"]),
+                "vol": _safe_float(metrics["Vol"], 0),
+                "mdd": _safe_float(metrics["MDD"], 0),
+                "initial_value": _safe_float(metrics["Initial Value"], 0),
+                "final_value": _safe_float(metrics["Final Value"], 0),
                 "total_positions": metrics["Total Positions"],
                 "date_range": metrics["Date Range"],
             },
-            "equity_curve": equity_curve,
+            "equity_curve": [
+                {"date": e["date"], "total_value": _safe_float(e["total_value"], 0)}
+                for e in equity_curve
+            ],
             "trades": trades[-50:],
         }
     except Exception as e:

@@ -1,0 +1,7 @@
+{
+  "signature": "sbankmanfried--gpt-4o-mini",
+  "display_name": "sbankmanfried",
+  "basemodel": "gpt-4o-mini",
+  "strategy_id": "momentum_mike",
+  "strategy_description": "Trend-following momentum trader \u2014 rides breakouts, cuts losers fast, scales into winners"
+}

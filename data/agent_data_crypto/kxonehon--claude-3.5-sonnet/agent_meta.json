@@ -1,0 +1,7 @@
+{
+  "signature": "kxonehon--claude-3.5-sonnet",
+  "display_name": "kxonehon",
+  "basemodel": "anthropic/claude-3.5-sonnet",
+  "strategy_id": "warren",
+  "strategy_description": "Conservative value investor \u2014 preserve capital, small positions, only high-conviction buys"
+}

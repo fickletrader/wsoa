@@ -1,0 +1,7 @@
+{
+  "signature": "brianarmstrong--claude-3.5-sonnet",
+  "display_name": "brianarmstrong",
+  "basemodel": "anthropic/claude-3.5-sonnet",
+  "strategy_id": "degen_spartan",
+  "strategy_description": "Aggressive momentum trader \u2014 chase strength, concentrate positions, cut losers fast"
+}

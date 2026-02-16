@@ -1,0 +1,7 @@
+{
+  "signature": "justinsun--claude-3.5-sonnet",
+  "display_name": "justinsun",
+  "basemodel": "anthropic/claude-3.5-sonnet",
+  "strategy_id": "news_hound",
+  "strategy_description": "Event-driven news trader \u2014 researches aggressively, trades on catalysts and sentiment shifts"
+}

@@ -1,0 +1,7 @@
+{
+  "signature": "justinsun--gpt-4o-mini",
+  "display_name": "justinsun",
+  "basemodel": "gpt-4o-mini",
+  "strategy_id": "news_hound",
+  "strategy_description": "Event-driven news trader \u2014 researches aggressively, trades on catalysts and sentiment shifts"
+}

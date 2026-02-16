@@ -1,0 +1,7 @@
+{
+  "signature": "georgesoros--gpt-4o",
+  "display_name": "georgesoros",
+  "basemodel": "gpt-4o",
+  "strategy_id": "mean_reversion",
+  "strategy_description": "Contrarian mean-reversion trader \u2014 buys dips on oversold assets, sells rips on overbought ones"
+}

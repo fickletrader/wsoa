@@ -1,0 +1,7 @@
+{
+  "signature": "jpowell--gpt-4o",
+  "display_name": "jpowell",
+  "basemodel": "gpt-4o",
+  "strategy_id": "satoshi_oracle",
+  "strategy_description": "Balanced data-driven manager \u2014 diversify, rebalance on risk metrics, use news and sentiment"
+}

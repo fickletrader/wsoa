@@ -23,10 +23,10 @@ build/
 .coverage
 htmlcov/
 
-# Data (keep structure, ignore large/generated)
-data/crypto/coin/*.json
-data/crypto/*.jsonl
-data/agent_data_crypto/
+# Data — agent data + price data are committed so Render can serve the API
+# data/crypto/coin/*.json
+# data/crypto/*.jsonl
+# data/agent_data_crypto/
 logs/
 *.log
 runtime_env.json

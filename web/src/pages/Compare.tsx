@@ -46,8 +46,8 @@ function OverlaidChart({ details }: { details: AgentDetail[] }) {
   return (
     <div
       style={{
-        background: "#111",
-        border: "1px solid #222",
+        background: "#0d0d0d",
+        border: "1px solid #1a1a1a",
         borderRadius: 4,
         padding: "0.75rem",
         marginBottom: "1rem",
@@ -218,161 +218,170 @@ export default function Compare() {
         Compare
       </h1>
 
-      {/* Agent selector */}
       <div
         style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "0.4rem",
-          marginBottom: "1.25rem",
+          background: "#111",
+          border: "1px solid #222",
+          borderRadius: 4,
+          padding: "1rem",
         }}
       >
-        {loading ? (
-          <p style={{ color: "#777", fontWeight: 300, fontSize: "0.85rem" }}>
-            Loading agents...
-          </p>
-        ) : agents.length === 0 ? (
-          <p style={{ color: "#777", fontWeight: 300, fontSize: "0.85rem" }}>
-            No agents available.
-          </p>
-        ) : (
-          agents.map((sig) => {
-            const isSelected = selected.includes(sig);
-            return (
-              <button
-                key={sig}
-                onClick={() => toggle(sig)}
-                style={{
-                  padding: "0.35rem 0.65rem",
-                  borderRadius: 3,
-                  border: isSelected ? "1px solid #555" : "1px solid #222",
-                  background: isSelected ? "#1a1a1a" : "transparent",
-                  color: isSelected ? "#ddd" : "#777",
-                  cursor: "pointer",
-                  fontSize: "0.78rem",
-                  fontWeight: 300,
-                  transition: "all 0.1s",
-                }}
-              >
-                {getDisplay(sig)}
-              </button>
-            );
-          })
-        )}
-      </div>
-
-      {comparing && (
-        <p style={{ color: "#777", fontWeight: 300, fontSize: "0.85rem" }}>
-          Loading...
-        </p>
-      )}
-
-      {/* Overlaid equity curves */}
-      {details.length > 0 && <OverlaidChart details={details} />}
-
-      {/* Metrics table */}
-      {details.length > 0 && (
+        {/* Agent selector */}
         <div
           style={{
-            overflowX: "auto",
-            borderRadius: 4,
-            border: "1px solid #222",
-            background: "#111",
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "0.4rem",
+            marginBottom: "1.25rem",
           }}
         >
-          <table style={{ width: "100%", borderCollapse: "collapse" }}>
-            <thead>
-              <tr
-                style={{
-                  borderBottom: "1px solid #222",
-                  background: "#161616",
-                }}
-              >
-                <th
+          {loading ? (
+            <p style={{ color: "#777", fontWeight: 300, fontSize: "0.85rem" }}>
+              Loading agents...
+            </p>
+          ) : agents.length === 0 ? (
+            <p style={{ color: "#777", fontWeight: 300, fontSize: "0.85rem" }}>
+              No agents available.
+            </p>
+          ) : (
+            agents.map((sig) => {
+              const isSelected = selected.includes(sig);
+              return (
+                <button
+                  key={sig}
+                  onClick={() => toggle(sig)}
                   style={{
-                    ...cellStyle,
-                    textAlign: "left",
-                    fontWeight: 400,
-                    color: "#666",
-                    fontSize: "0.72rem",
+                    padding: "0.35rem 0.65rem",
+                    borderRadius: 3,
+                    border: isSelected ? "1px solid #555" : "1px solid #222",
+                    background: isSelected ? "#1a1a1a" : "transparent",
+                    color: isSelected ? "#ddd" : "#777",
+                    cursor: "pointer",
+                    fontSize: "0.78rem",
+                    fontWeight: 300,
+                    transition: "all 0.1s",
                   }}
                 >
-                  Metric
-                </th>
-                {details.map((d) => (
+                  {getDisplay(sig)}
+                </button>
+              );
+            })
+          )}
+        </div>
+
+        {comparing && (
+          <p style={{ color: "#777", fontWeight: 300, fontSize: "0.85rem" }}>
+            Loading...
+          </p>
+        )}
+
+        {/* Overlaid equity curves */}
+        {details.length > 0 && <OverlaidChart details={details} />}
+
+        {/* Metrics table */}
+        {details.length > 0 && (
+          <div
+            style={{
+              overflowX: "auto",
+              borderRadius: 4,
+              border: "1px solid #1a1a1a",
+              background: "#0d0d0d",
+            }}
+          >
+            <table style={{ width: "100%", borderCollapse: "collapse" }}>
+              <thead>
+                <tr
+                  style={{
+                    borderBottom: "1px solid #222",
+                    background: "#161616",
+                  }}
+                >
                   <th
-                    key={d.signature}
                     style={{
                       ...cellStyle,
-                      textAlign: "right",
+                      textAlign: "left",
                       fontWeight: 400,
-                      color: "#888",
+                      color: "#666",
                       fontSize: "0.72rem",
                     }}
                   >
-                    <Link
-                      to={`/app/agent/${encodeURIComponent(d.signature)}`}
-                      style={{ color: "inherit", textDecoration: "none" }}
-                    >
-                      {d.display_name || d.signature}
-                    </Link>
+                    Metric
                   </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                {
-                  label: "Return",
-                  fn: (d: AgentDetail) => fmtPct(d.metrics.cr),
-                },
-                {
-                  label: "Sortino",
-                  fn: (d: AgentDetail) =>
-                    d.metrics.sortino != null
-                      ? d.metrics.sortino.toFixed(2)
-                      : "-",
-                },
-                {
-                  label: "Volatility",
-                  fn: (d: AgentDetail) =>
-                    (d.metrics.vol * 100).toFixed(2) + "%",
-                },
-                {
-                  label: "Max Drawdown",
-                  fn: (d: AgentDetail) => fmtPct(d.metrics.mdd),
-                },
-                {
-                  label: "Initial",
-                  fn: (d: AgentDetail) => fmtUsd(d.metrics.initial_value),
-                },
-                {
-                  label: "Final",
-                  fn: (d: AgentDetail) => fmtUsd(d.metrics.final_value),
-                },
-              ].map((row, ri) => (
-                <tr
-                  key={row.label}
-                  style={{
-                    borderBottom: "1px solid #1a1a1a",
-                    background: ri % 2 === 0 ? "transparent" : "#0d0d0d",
-                  }}
-                >
-                  <td style={{ ...cellStyle, color: "#777" }}>{row.label}</td>
                   {details.map((d) => (
-                    <td
+                    <th
                       key={d.signature}
-                      style={{ ...cellStyle, textAlign: "right" }}
+                      style={{
+                        ...cellStyle,
+                        textAlign: "right",
+                        fontWeight: 400,
+                        color: "#888",
+                        fontSize: "0.72rem",
+                      }}
                     >
-                      {row.fn(d)}
-                    </td>
+                      <Link
+                        to={`/app/agent/${encodeURIComponent(d.signature)}`}
+                        style={{ color: "inherit", textDecoration: "none" }}
+                      >
+                        {d.display_name || d.signature}
+                      </Link>
+                    </th>
                   ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+              </thead>
+              <tbody>
+                {[
+                  {
+                    label: "Return",
+                    fn: (d: AgentDetail) => fmtPct(d.metrics.cr),
+                  },
+                  {
+                    label: "Sortino",
+                    fn: (d: AgentDetail) =>
+                      d.metrics.sortino != null
+                        ? d.metrics.sortino.toFixed(2)
+                        : "-",
+                  },
+                  {
+                    label: "Volatility",
+                    fn: (d: AgentDetail) =>
+                      (d.metrics.vol * 100).toFixed(2) + "%",
+                  },
+                  {
+                    label: "Max Drawdown",
+                    fn: (d: AgentDetail) => fmtPct(d.metrics.mdd),
+                  },
+                  {
+                    label: "Initial",
+                    fn: (d: AgentDetail) => fmtUsd(d.metrics.initial_value),
+                  },
+                  {
+                    label: "Final",
+                    fn: (d: AgentDetail) => fmtUsd(d.metrics.final_value),
+                  },
+                ].map((row, ri) => (
+                  <tr
+                    key={row.label}
+                    style={{
+                      borderBottom: "1px solid #1a1a1a",
+                      background: ri % 2 === 0 ? "transparent" : "#111",
+                    }}
+                  >
+                    <td style={{ ...cellStyle, color: "#777" }}>{row.label}</td>
+                    {details.map((d) => (
+                      <td
+                        key={d.signature}
+                        style={{ ...cellStyle, textAlign: "right" }}
+                      >
+                        {row.fn(d)}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
     </section>
   );
 }
