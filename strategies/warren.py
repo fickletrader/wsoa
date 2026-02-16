@@ -14,7 +14,7 @@ from tools.price_tools import (
     get_yesterday_open_and_close_price,
 )
 
-DISPLAY_NAME = "Warren"
+DISPLAY_NAME = "kxonehon"
 DESCRIPTION = "Conservative value investor — preserve capital, small positions, only high-conviction buys"
 STOP_SIGNAL = "<FINISH_SIGNAL>"
 

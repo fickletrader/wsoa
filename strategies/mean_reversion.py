@@ -14,7 +14,7 @@ from tools.price_tools import (
     get_yesterday_open_and_close_price,
 )
 
-DISPLAY_NAME = "MeanRevert"
+DISPLAY_NAME = "georgesoros"
 DESCRIPTION = "Contrarian mean-reversion trader — buys dips on oversold assets, sells rips on overbought ones"
 STOP_SIGNAL = "<FINISH_SIGNAL>"
 

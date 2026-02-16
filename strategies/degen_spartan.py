@@ -14,7 +14,7 @@ from tools.price_tools import (
     get_yesterday_open_and_close_price,
 )
 
-DISPLAY_NAME = "DegenSpartan"
+DISPLAY_NAME = "brianarmstrong"
 DESCRIPTION = "Aggressive momentum trader — chase strength, concentrate positions, cut losers fast"
 STOP_SIGNAL = "<FINISH_SIGNAL>"
 

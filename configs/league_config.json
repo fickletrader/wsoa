@@ -5,148 +5,35 @@
     "init_date": "2026-01-28",
     "end_date": "2026-02-07"
   },
+  "concurrency": 3,
   "models": [
-    {
-      "name": "Warren",
-      "basemodel": "gpt-4o-mini",
-      "strategy_id": "warren",
-      "signature": "warren--gpt-4o-mini",
-      "enabled": true
-    },
-    {
-      "name": "DegenSpartan",
-      "basemodel": "gpt-4o-mini",
-      "strategy_id": "degen_spartan",
-      "signature": "degenspartan--gpt-4o-mini",
-      "enabled": true
-    },
-    {
-      "name": "SatoshiOracle",
-      "basemodel": "gpt-4o-mini",
-      "strategy_id": "satoshi_oracle",
-      "signature": "satoshioracle--gpt-4o-mini",
-      "enabled": true
-    },
-    {
-      "name": "MomentumMike",
-      "basemodel": "gpt-4o-mini",
-      "strategy_id": "momentum_mike",
-      "signature": "momentummike--gpt-4o-mini",
-      "enabled": true
-    },
-    {
-      "name": "MeanRevert",
-      "basemodel": "gpt-4o-mini",
-      "strategy_id": "mean_reversion",
-      "signature": "meanrevert--gpt-4o-mini",
-      "enabled": true
-    },
-    {
-      "name": "NewsHound",
-      "basemodel": "gpt-4o-mini",
-      "strategy_id": "news_hound",
-      "signature": "newshound--gpt-4o-mini",
-      "enabled": true
-    },
-    {
-      "name": "Warren",
-      "basemodel": "gpt-4o",
-      "strategy_id": "warren",
-      "signature": "warren--gpt-4o",
-      "enabled": true
-    },
-    {
-      "name": "DegenSpartan",
-      "basemodel": "gpt-4o",
-      "strategy_id": "degen_spartan",
-      "signature": "degenspartan--gpt-4o",
-      "enabled": true
-    },
-    {
-      "name": "SatoshiOracle",
-      "basemodel": "gpt-4o",
-      "strategy_id": "satoshi_oracle",
-      "signature": "satoshioracle--gpt-4o",
-      "enabled": true
-    },
-    {
-      "name": "MomentumMike",
-      "basemodel": "gpt-4o",
-      "strategy_id": "momentum_mike",
-      "signature": "momentummike--gpt-4o",
-      "enabled": true
-    },
-    {
-      "name": "MeanRevert",
-      "basemodel": "gpt-4o",
-      "strategy_id": "mean_reversion",
-      "signature": "meanrevert--gpt-4o",
-      "enabled": true
-    },
-    {
-      "name": "NewsHound",
-      "basemodel": "gpt-4o",
-      "strategy_id": "news_hound",
-      "signature": "newshound--gpt-4o",
-      "enabled": true
-    },
-    {
-      "_comment": "DeepSeek — set DEEPSEEK_API_KEY in .env or override openai_api_key below",
-      "name": "Warren",
-      "basemodel": "deepseek-chat",
-      "strategy_id": "warren",
-      "signature": "warren--deepseek-chat",
-      "openai_base_url": "https://api.deepseek.com/v1",
-      "openai_api_key": "${DEEPSEEK_API_KEY}",
-      "enabled": false
-    },
-    {
-      "name": "DegenSpartan",
-      "basemodel": "deepseek-chat",
-      "strategy_id": "degen_spartan",
-      "signature": "degenspartan--deepseek-chat",
-      "openai_base_url": "https://api.deepseek.com/v1",
-      "openai_api_key": "${DEEPSEEK_API_KEY}",
-      "enabled": false
-    },
-    {
-      "name": "SatoshiOracle",
-      "basemodel": "deepseek-chat",
-      "strategy_id": "satoshi_oracle",
-      "signature": "satoshioracle--deepseek-chat",
-      "openai_base_url": "https://api.deepseek.com/v1",
-      "openai_api_key": "${DEEPSEEK_API_KEY}",
-      "enabled": false
-    },
-    {
-      "_comment": "Claude via OpenRouter — set OPENROUTER_API_KEY in .env or override below",
-      "name": "Warren",
-      "basemodel": "anthropic/claude-3.5-sonnet",
-      "strategy_id": "warren",
-      "signature": "warren--claude-3.5-sonnet",
-      "openai_base_url": "https://openrouter.ai/api/v1",
-      "openai_api_key": "${OPENROUTER_API_KEY}",
-      "enabled": false
-    },
-    {
-      "name": "DegenSpartan",
-      "basemodel": "anthropic/claude-3.5-sonnet",
-      "strategy_id": "degen_spartan",
-      "signature": "degenspartan--claude-3.5-sonnet",
-      "openai_base_url": "https://openrouter.ai/api/v1",
-      "openai_api_key": "${OPENROUTER_API_KEY}",
-      "enabled": false
-    },
-    {
-      "_comment": "Gemini via OpenRouter",
-      "name": "SatoshiOracle",
-      "basemodel": "google/gemini-2.0-flash-001",
-      "strategy_id": "satoshi_oracle",
-      "signature": "satoshioracle--gemini-2.0-flash",
-      "openai_base_url": "https://openrouter.ai/api/v1",
-      "openai_api_key": "${OPENROUTER_API_KEY}",
-      "enabled": false
-    }
+    {"name": "kxonehon",       "basemodel": "gpt-4o-mini", "strategy_id": "warren",          "signature": "kxonehon--gpt-4o-mini",        "enabled": true},
+    {"name": "brianarmstrong", "basemodel": "gpt-4o-mini", "strategy_id": "degen_spartan",   "signature": "brianarmstrong--gpt-4o-mini",  "enabled": true},
+    {"name": "jpowell",        "basemodel": "gpt-4o-mini", "strategy_id": "satoshi_oracle",  "signature": "jpowell--gpt-4o-mini",         "enabled": true},
+    {"name": "sbankmanfried",  "basemodel": "gpt-4o-mini", "strategy_id": "momentum_mike",   "signature": "sbankmanfried--gpt-4o-mini",   "enabled": true},
+    {"name": "georgesoros",    "basemodel": "gpt-4o-mini", "strategy_id": "mean_reversion",  "signature": "georgesoros--gpt-4o-mini",     "enabled": true},
+    {"name": "justinsun",      "basemodel": "gpt-4o-mini", "strategy_id": "news_hound",      "signature": "justinsun--gpt-4o-mini",       "enabled": true},
+
+    {"name": "kxonehon",       "basemodel": "gpt-4o", "strategy_id": "warren",          "signature": "kxonehon--gpt-4o",        "enabled": true},
+    {"name": "brianarmstrong", "basemodel": "gpt-4o", "strategy_id": "degen_spartan",   "signature": "brianarmstrong--gpt-4o",  "enabled": true},
+    {"name": "jpowell",        "basemodel": "gpt-4o", "strategy_id": "satoshi_oracle",  "signature": "jpowell--gpt-4o",         "enabled": true},
+    {"name": "sbankmanfried",  "basemodel": "gpt-4o", "strategy_id": "momentum_mike",   "signature": "sbankmanfried--gpt-4o",   "enabled": true},
+    {"name": "georgesoros",    "basemodel": "gpt-4o", "strategy_id": "mean_reversion",  "signature": "georgesoros--gpt-4o",     "enabled": true},
+    {"name": "justinsun",      "basemodel": "gpt-4o", "strategy_id": "news_hound",      "signature": "justinsun--gpt-4o",       "enabled": true},
+
+    {"name": "kxonehon",       "basemodel": "deepseek-chat", "strategy_id": "warren",          "signature": "kxonehon--deepseek-chat",        "openai_base_url": "https://api.deepseek.com/v1", "openai_api_key": "${DEEPSEEK_API_KEY}", "enabled": true},
+    {"name": "brianarmstrong", "basemodel": "deepseek-chat", "strategy_id": "degen_spartan",   "signature": "brianarmstrong--deepseek-chat",  "openai_base_url": "https://api.deepseek.com/v1", "openai_api_key": "${DEEPSEEK_API_KEY}", "enabled": true},
+    {"name": "jpowell",        "basemodel": "deepseek-chat", "strategy_id": "satoshi_oracle",  "signature": "jpowell--deepseek-chat",         "openai_base_url": "https://api.deepseek.com/v1", "openai_api_key": "${DEEPSEEK_API_KEY}", "enabled": true},
+    {"name": "sbankmanfried",  "basemodel": "deepseek-chat", "strategy_id": "momentum_mike",   "signature": "sbankmanfried--deepseek-chat",   "openai_base_url": "https://api.deepseek.com/v1", "openai_api_key": "${DEEPSEEK_API_KEY}", "enabled": true},
+    {"name": "georgesoros",    "basemodel": "deepseek-chat", "strategy_id": "mean_reversion",  "signature": "georgesoros--deepseek-chat",     "openai_base_url": "https://api.deepseek.com/v1", "openai_api_key": "${DEEPSEEK_API_KEY}", "enabled": true},
+    {"name": "justinsun",      "basemodel": "deepseek-chat", "strategy_id": "news_hound",      "signature": "justinsun--deepseek-chat",       "openai_base_url": "https://api.deepseek.com/v1", "openai_api_key": "${DEEPSEEK_API_KEY}", "enabled": true},
+
+    {"name": "kxonehon",       "basemodel": "anthropic/claude-3.5-sonnet", "strategy_id": "warren",          "signature": "kxonehon--claude-3.5-sonnet",        "openai_base_url": "https://openrouter.ai/api/v1", "openai_api_key": "${OPENROUTER_API_KEY}", "enabled": true},
+    {"name": "brianarmstrong", "basemodel": "anthropic/claude-3.5-sonnet", "strategy_id": "degen_spartan",   "signature": "brianarmstrong--claude-3.5-sonnet",  "openai_base_url": "https://openrouter.ai/api/v1", "openai_api_key": "${OPENROUTER_API_KEY}", "enabled": true},
+    {"name": "jpowell",        "basemodel": "anthropic/claude-3.5-sonnet", "strategy_id": "satoshi_oracle",  "signature": "jpowell--claude-3.5-sonnet",         "openai_base_url": "https://openrouter.ai/api/v1", "openai_api_key": "${OPENROUTER_API_KEY}", "enabled": true},
+    {"name": "sbankmanfried",  "basemodel": "anthropic/claude-3.5-sonnet", "strategy_id": "momentum_mike",   "signature": "sbankmanfried--claude-3.5-sonnet",   "openai_base_url": "https://openrouter.ai/api/v1", "openai_api_key": "${OPENROUTER_API_KEY}", "enabled": true},
+    {"name": "georgesoros",    "basemodel": "anthropic/claude-3.5-sonnet", "strategy_id": "mean_reversion",  "signature": "georgesoros--claude-3.5-sonnet",     "openai_base_url": "https://openrouter.ai/api/v1", "openai_api_key": "${OPENROUTER_API_KEY}", "enabled": true},
+    {"name": "justinsun",      "basemodel": "anthropic/claude-3.5-sonnet", "strategy_id": "news_hound",      "signature": "justinsun--claude-3.5-sonnet",       "openai_base_url": "https://openrouter.ai/api/v1", "openai_api_key": "${OPENROUTER_API_KEY}", "enabled": true}
   ],
   "agent_config": {
     "max_steps": 30,

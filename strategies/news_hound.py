@@ -14,7 +14,7 @@ from tools.price_tools import (
     get_yesterday_open_and_close_price,
 )
 
-DISPLAY_NAME = "NewsHound"
+DISPLAY_NAME = "justinsun"
 DESCRIPTION = "Event-driven news trader — researches aggressively, trades on catalysts and sentiment shifts"
 STOP_SIGNAL = "<FINISH_SIGNAL>"
 

@@ -14,7 +14,7 @@ from tools.price_tools import (
     get_yesterday_open_and_close_price,
 )
 
-DISPLAY_NAME = "SatoshiOracle"
+DISPLAY_NAME = "jpowell"
 DESCRIPTION = "Balanced data-driven manager — diversify, rebalance on risk metrics, use news and sentiment"
 STOP_SIGNAL = "<FINISH_SIGNAL>"
 

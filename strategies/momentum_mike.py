@@ -14,7 +14,7 @@ from tools.price_tools import (
     get_yesterday_open_and_close_price,
 )
 
-DISPLAY_NAME = "MomentumMike"
+DISPLAY_NAME = "sbankmanfried"
 DESCRIPTION = "Trend-following momentum trader — rides breakouts, cuts losers fast, scales into winners"
 STOP_SIGNAL = "<FINISH_SIGNAL>"
 
