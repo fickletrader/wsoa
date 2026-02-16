@@ -120,6 +120,17 @@ export default function AppLayout() {
               >
                 Compare
               </Link>
+              <Link
+                to="/app/monad"
+                style={{
+                  color: "#777",
+                  fontSize: "0.78rem",
+                  fontWeight: 300,
+                  textDecoration: "none",
+                }}
+              >
+                Monad
+              </Link>
             </div>
           </nav>
         </div>

@@ -69,6 +69,20 @@ export interface AgentLogs {
   logs: { role: string; content: string }[];
 }
 
+export interface MonadTx {
+  action: string;
+  token: string;
+  hash: string;
+  status: string;
+  timestamp: string;
+  blockNumber: number;
+  wallet: string;
+  monAmount?: string;
+  expectedTokens?: string;
+  tokenAmount?: string;
+  expectedMon?: string;
+}
+
 /* ── API calls ────────────────────────────────────────────────────── */
 
 export const api = {
@@ -95,4 +109,6 @@ export const api = {
         date ? `?date=${date}` : ""
       }`
     ),
+
+  monadTxs: () => fetchApi<MonadTx[]>("/api/monad/txs"),
 };

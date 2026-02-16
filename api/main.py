@@ -2,6 +2,7 @@
 WSOA FastAPI backend: leaderboard, agent detail, compare.
 Run from repo root: uvicorn api.main:app --reload --port 8000
 """
+import json
 import sys
 from pathlib import Path
 
@@ -83,3 +84,16 @@ def compare(signatures: str):
         elif d:
             result.append({"signature": sig, "error": d["error"]})
     return result
+
+
+@app.get("/api/monad/txs")
+def monad_txs():
+    """Return on-chain nad.fun transactions executed by WSOA agents."""
+    tx_log = ROOT / "monad" / "tx_log.json"
+    if not tx_log.exists():
+        return []
+    try:
+        with open(tx_log, "r") as f:
+            return json.load(f)
+    except Exception:
+        return []

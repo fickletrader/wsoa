@@ -1,0 +1,13 @@
+{
+  "name": "wsoa-monad",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "trade": "npx tsx nadfun-agent.ts"
+  },
+  "dependencies": {
+    "viem": "^2.0.0",
+    "dotenv": "^16.0.0",
+    "tsx": "^4.0.0"
+  }
+}

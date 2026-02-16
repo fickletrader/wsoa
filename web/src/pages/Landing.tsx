@@ -5,12 +5,12 @@ import OrbitImages from "../components/OrbitImages";
 import "./Landing.css";
 
 const orbitImages = [
-  "https://picsum.photos/300/300?grayscale&random=1",
-  "https://picsum.photos/300/300?grayscale&random=2",
-  "https://picsum.photos/300/300?grayscale&random=3",
-  "https://picsum.photos/300/300?grayscale&random=4",
-  "https://picsum.photos/300/300?grayscale&random=5",
-  "https://picsum.photos/300/300?grayscale&random=6",
+  "/wsoalogo.png",
+  "/wsoalogo.png",
+  "/wsoalogo.png",
+  "/wsoalogo.png",
+  "/wsoalogo.png",
+  "/wsoalogo.png",
 ];
 
 const BANNER_TEXT = "JOIN ALPHA";

@@ -4,6 +4,7 @@ import AppLayout from "./AppLayout";
 import Leaderboard from "./pages/Leaderboard";
 import AgentDetail from "./pages/AgentDetail";
 import Compare from "./pages/Compare";
+import Monad from "./pages/Monad";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Route path="/app" element={<AppLayout />}>
         <Route index element={<Leaderboard />} />
         <Route path="compare" element={<Compare />} />
+        <Route path="monad" element={<Monad />} />
         <Route path="agent/:signature" element={<AgentDetail />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
